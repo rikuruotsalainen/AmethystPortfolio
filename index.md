@@ -1,7 +1,7 @@
 ---
 layout: home
-title: 'My Purple Portfolio'
-description: 'A personal portfolio showcasing my work with a purple theme.'
+title: 'My Portfolio'
+description: 'Welcome to my portfolio website.'
 ---
 
 # Welcome to My Portfolio!
