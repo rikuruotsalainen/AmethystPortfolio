@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Amethyst",
+    "slug": "Amethyst",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/amethyst_icon.png",
+    "scheme": "Amethyst",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/amethyst_splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#3F3154"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/amethyst_icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.tiko.amethyst"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/amethyst_icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-font",
+        {
+          "assets": [
+            "./assets/fonts/Kadwa-Regular.ttf",
+            "./assets/fonts/Kadwa-Bold.ttf"
+          ]
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b94abb1a-dea7-492a-a582-49ce7e36c9e7"
+      }
+    }
+  }
+}
