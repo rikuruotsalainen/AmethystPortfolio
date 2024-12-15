@@ -5,22 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amethyst Portfolio</title>
     <link rel="icon" href="./assets/images/menulogo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
     <style>
+      .koodi {
+        background-color: #3f3154; /* Light gray background */
+        border: 3px solid white;
+        border-radius: 5px; /* Optional: rounded corners */
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+
+      }
+      .koodi code {
+        font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+        font-size: 16px; /* Adjust font size */
+        color: white; /* Dark color for code */
+        background-color: #170128; /* Slightly different background color for the code */
+        padding: 5px; /* Padding inside the code box */
+        border-radius: 5px; /* Rounded corners for the code block */
+        max-height: 400px; /* Set the max height */
+        overflow: auto; /* Enable scrolling when content overflows */
+      }
+      .koodi pre {
+        border-radius: 5px; /* Optional: rounded corners */
+        border: 3px solid #ddd; /* Optional: border color */
+      }
       body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         margin: 0;
         padding: 20px;
-        background-color: #f9f9f9;
-        color: #333;
+        background-color: #3f3154;
+        color: white;
       }
       h1 {
-        color: #6a0dad;
+        color: white;
       }
     </style>
   </head>
   <body>
     <h1>Ticorporate Portfolio Riku Ruotsalainen</h1>
+    <img src="./assets/images/menulogo.png" alt="Amethyst logo" />
     <p>Miten päätyö ja sivutyö näkyvät esityksessä/portfoliossa?</p>
     <p>Mitä olen oppinut ja oivaltanut?</p>
     <p>Mitkä tavoitteet toteutuivat ja mitkä jäivät toteutumatta?</p>
@@ -31,5 +63,44 @@
     <p>Mitä osaamista minun tulee vielä hankkia, jotta saavutan tavoitteeni?</p>
     <p>Mitkä ovat omat vahvuuteni ja ovatko ne selventyneet?</p>
     <p>Miksi valitsin juuri nämä dokumentit/työt portfoliooni?</p>
+    <div class="koodi">
+      <h2>Koodi testi</h2>
+      <pre><code class="language-javascript">
+        const HoroscopeData: React.FC<HoroscopeDataProps> = ({ route }) => {
+          const { itemId } = route.params; // Tuotu ID propsina
+          const { itemImage } = route.params;
+          const [data, setData] = useState<HoroscopeDataResponse | null>(null);
+          const [loading, setLoading] = useState(true);
+        
+          useEffect(() => {
+            fetchHoroscope();
+          }, []);
+        
+          // Haetaan API:sta propsin avulla dataa, tarkalleen ottaen horoskooppi kuvaukset tai "ennustukset"
+          const fetchHoroscope = async () => {
+            try {
+              const response = await fetch(
+                // Käytetään tuotua id-propsia api-fetchin kanssa
+                `https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=${itemId}&day=TODAY`,
+                {
+                  headers: {
+                    accept: 'application/json',
+                  },
+                }
+              );
+              const result = await response.json();
+              setData(result.data); // Otetaan data talteen
+            } catch (error) {
+              console.error('Error fetching horoscope:', error);
+            } finally {
+              setLoading(false);
+            }
+          };
+        
+          if (loading) {
+            return <Loader />;
+          }
+    </code></pre>
+    </div>
   </body>
 </html>
