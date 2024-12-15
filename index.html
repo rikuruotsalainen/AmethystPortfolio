@@ -64,7 +64,19 @@
     <p>Mitkä ovat omat vahvuuteni ja ovatko ne selventyneet?</p>
     <p>Miksi valitsin juuri nämä dokumentit/työt portfoliooni?</p>
     <div class="koodi">
-      <h2>Koodi testi</h2>
+      <h2>Koodi testi</h2><pre><code class="language-javascript">
+        &lt;HoroscopeButton
+          key={horoscopeText}
+          title={horoscopeText} // Passing the ID of the matched horoscope
+          img={horoscopeImage} // Passing the image of the matched horoscope
+          onPress={() =&gt;
+            navigation.navigate('HoroscopeData', {
+              itemId: horoscopeText, // Pass the ID to the next screen
+              itemImage: horoscopeImage, // Pass the image to the next screen
+            })
+          }
+        /&gt;
+      </code></pre>
       <pre><code class="language-javascript">
         const HoroscopeData: React.FC<HoroscopeDataProps> = ({ route }) => {
           const { itemId } = route.params; // Tuotu ID propsina
