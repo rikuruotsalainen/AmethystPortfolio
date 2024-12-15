@@ -53,27 +53,27 @@
   <body>
     <h1>Ticorporate Portfolio Riku Ruotsalainen</h1>
     <img src="./assets/images/menulogo.png" alt="Amethyst logo" />
-    <p>Miten päätyö ja sivutyö näkyvät esityksessä/portfoliossa?</p>
-    <p>Mitä olen oppinut ja oivaltanut?</p>
-    <p>Mitkä tavoitteet toteutuivat ja mitkä jäivät toteutumatta?</p>
-    <p>Mitä opin suunnitelman ulkopuolelta?</p>
-    <p>Miten näen tulevaisuuden</p>
-    <p>Millaiseen työhön haluan sijoittua?</p>
-    <p>Kuinka opintojakso tuki niitä tavoitteita?</p>
-    <p>Mitä osaamista minun tulee vielä hankkia, jotta saavutan tavoitteeni?</p>
-    <p>Mitkä ovat omat vahvuuteni ja ovatko ne selventyneet?</p>
-    <p>Miksi valitsin juuri nämä dokumentit/työt portfoliooni?</p>
+    <h3>Miten päätyö ja sivutyö näkyvät esityksessä/portfoliossa?</h3>
+    <h3>Mitä olen oppinut ja oivaltanut?</h3>
+    <h3>Mitkä tavoitteet toteutuivat ja mitkä jäivät toteutumatta?</h3>
+    <h3>Mitä opin suunnitelman ulkopuolelta?</h3>
+    <h3>Miten näen tulevaisuuden</h3>
+    <h3>Millaiseen työhön haluan sijoittua?</h3>
+    <h3>Kuinka opintojakso tuki niitä tavoitteita?</h3>
+    <h3>Mitä osaamista minun tulee vielä hankkia, jotta saavutan tavoitteeni?</h3>
+    <h3>Mitkä ovat omat vahvuuteni ja ovatko ne selventyneet?</h3>
+    <h3>Miksi valitsin juuri nämä dokumentit/työt portfoliooni?</h3>
     <div class="koodi">
-      <h2>horoscope koodi</h2>
+      <h2>Horoscope koodi</h2>
       <pre><code class="language-javascript">
-        &lt;HoroscopeButton
-          key={horoscopeText}
-          title={horoscopeText} // Passing the ID of the matched horoscope
-          img={horoscopeImage} // Passing the image of the matched horoscope
-          onPress={() =&gt;
-            navigation.navigate('HoroscopeData', {
-              itemId: horoscopeText, // Pass the ID to the next screen
-              itemImage: horoscopeImage, // Pass the image to the next screen
+        &lt;HoroscopeButton //HoroscopeButton-komponentti joka on importattu
+          key={horoscopeText} //Ainutlaatuinen avain (key) tämän napin tunnistamiseen Reactissa
+          title={horoscopeText} //Napin teksti, joka näyttää horoskoopin nimen
+          img={horoscopeImage} //Napin kuva, joka näyttää horoskoopin kuvan
+          onPress={() =&gt; //Toiminto, joka suoritetaan, kun nappia painetaan
+            navigation.navigate('HoroscopeData', { //Siirrytään HoroscopeData Sivulle
+              itemId: horoscopeText, //Viedään horoscopeText eli horoscopen nimi itemId nimellä HoroscopeData sivulle
+              itemImage: horoscopeImage, //Viedään horoscopeImage eli horoscopen kuva itemImage nimellä HoroscopeData sivulle
             })
           }
         /&gt;
@@ -81,16 +81,19 @@
       <h2>HoroscopeData koodi</h2>
       <pre><code class="language-javascript">
         const HoroscopeData: React.FC<HoroscopeDataProps> = ({ route }) => {
-          const { itemId } = route.params; // Tuotu ID propsina
-          const { itemImage } = route.params;
-          const [data, setData] = useState<HoroscopeDataResponse | null>(null);
-          const [loading, setLoading] = useState(true);
+          //Otetaan parametrit (propsit), jotka on välitetty navigoinnin kautta
+          const { itemId } = route.params; //Tuotu ID eli horoscopen nimi propsina
+          const { itemImage } = route.params; //Tuotu horoskoopin kuva propsina
+
+          //Määritellään komponentien tilat (state)
+          const [data, setData] = useState<HoroscopeDataResponse | null>(null); //Tallennetaan haettu data aluksi tyhjä
+          const [loading, setLoading] = useState(true); //Sivun lataus tila aluksi true joka tarkoittaa että lataus symboli näkyy
         
-          useEffect(() => {
-            fetchHoroscope();
+          useEffect(() => { //Käytetään Reactin useEffect-hookia API-kutsun tekemiseen, kun komponentti renderöidään ensimmäisen kerran
+            fetchHoroscope(); //Suoritetaan fetchHoroscope() funktio
           }, []);
         
-          // Haetaan API:sta propsin avulla dataa, tarkalleen ottaen horoskooppi kuvaukset tai "ennustukset"
+          // Haetaan API:sta propsin avulla horoskooppi kuvaukset
           const fetchHoroscope = async () => {
             try {
               const response = await fetch(
@@ -98,23 +101,37 @@
                 `https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=${itemId}&day=TODAY`,
                 {
                   headers: {
-                    accept: 'application/json',
+                    accept: 'application/json', 
                   },
                 }
               );
               const result = await response.json();
               setData(result.data); // Otetaan data talteen
             } catch (error) {
-              console.error('Error fetching horoscope:', error);
+              console.error('Error fetching horoscope:', error); //Error viesti jos fetch epäonnistuu
             } finally {
-              setLoading(false);
+              setLoading(false); //setLoading(false) poistaa lataus animaation kun fetch on tehty
             }
           };
         
-          if (loading) {
+          if (loading) { //Jos true niin lataus animaatio on päällä
             return <Loader />;
           }
-    </code></pre>
+          return (
+            &lt;View style={styles.background}&gt;
+              {data &amp;&amp; ( &lt;!-- Tarkistetaan, että data on olemassa ennen renderöintiä --&gt;
+                &lt;&gt;
+                  &lt;Text style={styles.header}&gt;{itemId}&lt;/Text&gt; &lt;!-- Tulostetaan horoskoopin nimi --&gt;
+                  &lt;Image source={{ uri: itemImage }} style={styles.image} /&gt; &lt;!-- Tulostetaan horoskoopin kuva --&gt;
+                  &lt;View style={styles.box}&gt; &lt;!-- Luodaan laatikko tiedon ympärille --&gt;
+                    &lt;Text style={styles.date}&gt;{data.date}&lt;/Text&gt; &lt;!-- Tulostetaan päivämäärä --&gt;
+                    &lt;Text style={styles.text}&gt;{data.horoscope_data}&lt;/Text&gt; &lt;!-- Tulostetaan horoskopen tiedot mitä saatiin fetchistä --&gt;
+                &lt;/&gt;
+              )}
+            &lt;/View&gt;
+          );
+        };
+      </code></pre>
     </div>
   </body>
 </html>
