@@ -21,7 +21,53 @@
         color: white;
         padding-left: 20px;
         padding-right: 20px;
-
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+      .intro {
+        background-color: #3f3154; /* Light gray background */
+        border: 3px solid white;
+        border-radius: 5px; /* Optional: rounded corners */
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+      }
+      .image-container {
+        flex-shrink: 0; /* Prevents the image from shrinking */
+      }
+        .image-container img {
+          max-width:200px; /* Adjust image size */
+          height: auto; /* Maintain aspect ratio */
+        }
+      .text-container {
+        max-width: 600px; /* Adjust as needed for your layout */
+      }
+      .koodikuva {
+        background-color: #3f3154; /* Light gray background */
+        border: 3px solid white;
+        border-radius: 5px; /* Optional: rounded corners */
+        color: white;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+      }
+      .kuva{ 
+        margin-left: 15%;
+        width: 30%;
+      }
+      .pienikuva{ 
+        margin-left: 33%;
+        width: 33%;
+      }
+      .isokuva{ 
+        width: 90%;
+        margin-left: 5%;
       }
       .koodi code {
         font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
@@ -51,20 +97,51 @@
     </style>
   </head>
   <body>
-    <h1>Ticorporate Portfolio Riku Ruotsalainen</h1>
-    <img src="./assets/images/menulogo.png" alt="Amethyst logo" />
-    <h3>Miten päätyö ja sivutyö näkyvät esityksessä/portfoliossa?</h3>
-    <h3>Mitä olen oppinut ja oivaltanut?</h3>
-    <h3>Mitkä tavoitteet toteutuivat ja mitkä jäivät toteutumatta?</h3>
-    <h3>Mitä opin suunnitelman ulkopuolelta?</h3>
-    <h3>Miten näen tulevaisuuden</h3>
-    <h3>Millaiseen työhön haluan sijoittua?</h3>
-    <h3>Kuinka opintojakso tuki niitä tavoitteita?</h3>
-    <h3>Mitä osaamista minun tulee vielä hankkia, jotta saavutan tavoitteeni?</h3>
-    <h3>Mitkä ovat omat vahvuuteni ja ovatko ne selventyneet?</h3>
-    <h3>Miksi valitsin juuri nämä dokumentit/työt portfoliooni?</h3>
+    <h1>Ticorporate-Portfolio Riku Ruotsalainen AC7872</h1>
+    <div class="intro">
+      <div class="image-container">
+        <img src="./assets/images/menulogo.png" alt="Amethyst logo" />
+      </div>
+      <div class="text-container">
+        <h2>Mikä on Amethyst</h2>
+        <p>Amethyst on mobiilisovellus jonka ydintoimintoina on
+          päivän tarot, päivän horoskooppi, unipäiväkirja sekä kristalliopas.</p>
+      </div>
+    </div>
+    <div class="koodi">
+    <h2>Mitä osasin tikorporaten alussa?</h2>
+    <p>- Selainpohjaista frontend ohjelmointia</p>
+    <p>- Ryhmätyöskentely</p>
+    <p>- Git-versionhallinnan perusteet</p>
+    <p>- Vähän Firebasen perusteita</p>
+    <h2>Mitä osaan nyt?</h2>
+    <p>- React nativen perusteet</p>
+    <p>- Mobiilisovelluskehityksen perusteet</p>
+    <p>- Eri npm pakettejen hyödyntäminen</p>
+    <p>- Firebasen perusteet</p>
+    <p>- Firebase säännöt ja storage</p>
+    <p>- Google authentikaation perusteet ja miten käyttäjältä saa haettua lisää dataa mitä ei saa suoraan</p>
+    <h2>Mitä tein ryhmässä?</h2>
+    <p>- Frontend koodausta</p>
+    <p>- Firebase tietokanta juttuja</p>
+    <p>- Google authentikaatio</p>
+    <p>- Sovelluksen responsiivisuus</p>
+    <p>- Sovelluksen lataus animaatiot</p>
+    <p>- Sovelluksen fetchit (päivän horoskooppi ja käyttäjän syntymäaika)</p>
+    <p>- Sovelluksen database yhteydet</p>
+    <p>- Sovelluksen tyylittely</p>
+    <p>- Apk pakettien rakentaminen</p>
+    <h2>Mitä oivalsin?</h2>
+    <p>- Miten paljon helpompi on tehdä sovellus jos siitä on tehty Figmat ja suunitelmat hyvin</p>
+    <p>- Parikoodauksen hyödyllisyys</p>
+    <p>- Responsiivisuus vaikeampaa puhelimelle tehdessä kuin selaimelle</p>
+    <p>- Dokumentoinnin tärkeys</p>
+    <p>- Miten käyttäjän tietoja saa Google Authentikaation kautta</p>
+    <p>- Käyttäjä testauksen tärkeyden</p>
+  </div>
     <div class="koodi">
       <h2>Horoscope koodi</h2>
+      <p>Nappi jolla viedään horoskoopin nimi ja kuva "HoroscopeData" sivulle</p>
       <pre><code class="language-javascript">
         &lt;HoroscopeButton //HoroscopeButton-komponentti joka on importattu
           key={horoscopeText} //Ainutlaatuinen avain (key) tämän napin tunnistamiseen Reactissa
@@ -79,6 +156,7 @@
         /&gt;
       </code></pre>
       <h2>HoroscopeData koodi</h2>
+      <p>Otetaan vastaan horoskoopin nimi ja kuva ja tehdään nimen avulla fetch</p>
       <pre><code class="language-javascript">
         const HoroscopeData: React.FC<HoroscopeDataProps> = ({ route }) => {
           //Otetaan parametrit (propsit), jotka on välitetty navigoinnin kautta
@@ -131,7 +209,49 @@
             &lt;/View&gt;
           );
         };
-      </code></pre>
+      </code></pre>     
+      <img src="./assets/images/horoscopemenu.png" alt="Amethyst horoscope menu" class="kuva"/>
+      <img src="./assets/images/horoscopedata.png" alt="Amethyst horoscope data" class="kuva"/>
+    </div>
+    <div class="koodi">
+      <h2>Tietokanta ja Authentikaatio</h2>
+      <p>Tietokantana sovelluksessa toimi Firebase johon tallentiin suurin osa sovelluksen kuvista (79 tarot kuvaa ja 18 mineraali kuvaa) ja tarottejen, mineraalien ja unisymboleiden tekstit.</p>
+      <p>Firebase tietokanta</p>     
+      <img src="./assets/images/tietokanta.jpg" alt="Amethyst tietokanta" class="isokuva"/>
+      <p>Firebase storage</p>
+      <img src="./assets/images/storage.jpg" alt="Amethyst storage" class="isokuva"/>
+      <p>Kuvia joissa tietokanta on käytössä</p>
+      <img src="./assets/images/tarotmalli.png" alt="Amethyst tarot data" class="kuva"/>
+      <img src="./assets/images/mineralmalli.png" alt="Amethyst mineral data" class="kuva"/>
+      <img src="./assets/images/unisymbolit.png" alt="Amethyst symbolit" class="kuva"/>
+      <img src="./assets/images/menu.png" alt="Amethyst menu" class="kuva"/>
+      <img src="./assets/images/mineralmenu.png" alt="Amethyst menu" class="pienikuva"/>
+      
+      <p>Firebasea käytetään sovelluksessa myös Google Authentikaatio tekemiseen josta sovellus saa käyttäjän syntymäajan horoskooppia varten ja käyttäjän etunimen menua varten.</p>
+      <p>Firebase Google authentikaatio</p>
+      <img src="./assets/images/auth.jpg" alt="Amethyst tietokanta auth" class="isokuva"/>
+    </div>
+    <div class="koodi">     
+      <h2>Kuvia keskeneräisitä vaiheista</h2>
+      <img src="./assets/images/kesken horoskooppi.png" alt="Amethyst menu" class="kuva"/>
+      <img src="./assets/images/menukesken.jpg" alt="Amethyst menu" class="kuva"/>
+      <img src="./assets/images/selain.jpg" alt="Amethyst menu" class="isokuva"/>
+      <img src="./assets/images/selainhoroscope.jpg" alt="Amethyst menu" class="isokuva"/>
+      <img src="./assets/images/selainmineral.jpg" alt="Amethyst menu" class="isokuva"/>
+      <img src="./assets/images/selainmineraldata.jpg" alt="Amethyst menu" class="isokuva"/>    
+      <img src="./assets/images/selaintarot.jpg" alt="Amethyst menu" class="isokuva"/>
+      <img src="./assets/images/media.jpg" alt="Amethyst menu" class="pienikuva"/>
+    </div>
+    <div class="koodi">
+      <h2>Mitä olisimme tehneet toisin?</h2>
+      <p>- Tietokanta sovelluksessa ehkä vähän turha mutta opetti hyvin</p>
+      <p>- Google authentikaatio kanssa ei kovin tärkeä</p>
+      <p>- Alusta astin miettinyt responsiivisuutta</p>
+      <p>- Paremmat kommentit kodiin</p>
+      <p>- Vaihtanut Expon pois</p>
+      <h2>Minkälaisissa tehtävissä näkisin itseni tulevaisuudessa?</h2>
+      <p>Tykkäsin tehdä mobiilisovellusta tosi paljon ja Eeliksen kanssa mietittiin että tehdään oppinäytetyöksi sovelluksen julkaiseminen.</p>
+      <p>Tietokannat ja datan liikkuminen sovelluksen sisällä on kiinnostavaa ja saattaisin nähdä itseni työskentelevän tälläisten asioiden parissa.</p>
     </div>
   </body>
 </html>
